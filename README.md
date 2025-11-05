@@ -5,33 +5,33 @@
 
 **python环境包**
 
-collections
-scipy
-typing
-argparse
-dask
-json
-logging
-numpy
-os
-pandas
-requests
-subprocess
-sys
-time
-yaml
+collections 
+scipy 
+typing 
+argparse 
+dask 
+json 
+logging 
+numpy 
+os 
+pandas 
+requests 
+subprocess 
+sys 
+time 
+yaml 
 
 **R 环境包（r4.3）**
 
-jsonlite
-purrr
-rstatix
-scales
-tidyr
-dplyr
-ggplot2
-ggpmisc
-ggpubr
+jsonlite 
+purrr 
+rstatix 
+scales 
+tidyr 
+dplyr  
+ggplot2 
+ggpmisc 
+ggpubr 
 
 # 使用说明
 ```bash
