@@ -4,7 +4,7 @@
 # 环境配置
 
 **python环境包**
-
+```txt
 collections  
 scipy  
 typing  
@@ -20,9 +20,10 @@ subprocess
 sys  
 time  
 yaml  
+```
 
 **R 环境包（r4.3）**
-
+```txt
 jsonlite  
 purrr  
 rstatix  
@@ -32,6 +33,7 @@ dplyr
 ggplot2  
 ggpmisc  
 ggpubr  
+```
 
 # 使用说明
 ```bash
