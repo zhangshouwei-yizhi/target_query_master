@@ -81,18 +81,24 @@ MET500data:
     metadata_file: ./xena/MET500/MET500.data_clinical_sample.txt
 ```
 
+# 版本信息
+v1.0: 仅可获取不同数据库分析后的json文件
+v1.1: 在v1.0基础上添加了数据可视化功能，生成可视化结果文件
+v1.2: 在v1.1基础上添加了DeepTMHMM蛋白结构域预测功能
+
+
 # 运行示例
 ## 调研CA9在所有数据库的信息
 ```
-python target_query.main.py all --gene-anno HGNC.gene.anno.tsv --gene-symbol CA9 --config-file config.yaml --output-dir ./
+python target_query.main.v1.2.py all --gene-anno HGNC.gene.anno.tsv --gene-symbol CA9 --config-file config.yaml --output-dir ./
 ```
 
 ## 仅调研TCGA数据集信息
 ```
-python target_query.main.py tcga --gene-anno HGNC.gene.anno.tsv --gene-symbol CA9 --config-file config.yaml --output-dir ./
+python target_query.main.v1.2.py tcga --gene-anno HGNC.gene.anno.tsv --gene-symbol CA9 --config-file config.yaml --output-dir ./
 ```
 
 ## 仅调研GTEx和TCGA数据集信息
 ```
-python target_query.main.py all --gene-anno HGNC.gene.anno.tsv --gene-symbol CA9 --config-file config.yaml --output-dir ./  --skip-parsers hpa,uniprot,depmap,met500 --only-parsers  gtex,tcga
+python target_query.main.v1.2.py all --gene-anno HGNC.gene.anno.tsv --gene-symbol CA9 --config-file config.yaml --output-dir ./  --skip-parsers hpa,uniprot,depmap,met500 --only-parsers  gtex,tcga
 ```
