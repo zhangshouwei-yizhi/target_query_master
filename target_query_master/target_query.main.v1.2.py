@@ -9,6 +9,7 @@ from py_parser.GTExParser import GTExParser
 from py_parser.DepMapParser import DepMapParser
 from py_parser.TCGAParser import TCGAParser
 from py_parser.MET500Parser import MET500Parser
+from py_parser.DeepTMHMMPredict import ProteinTopologyPredictor
 
 class ParserManager:
     """管理所有数据解析器的统一接口"""
@@ -345,7 +346,7 @@ def setup_argparse():
     # 创建主解析器
     parser = argparse.ArgumentParser(
         description='不同来源生信数据集解析工具',
-        epilog='example: python target_query.main.py all --gene-anno HGNC.gene.anno.tsv --gene-symbol CA9 --config-file config.yaml --output-dir ./'
+        epilog='example: python target_query.main.py all --gene-anno HGNC.gene.anno.tsv --gene-symbol CA9 --config-file config.yaml'
     )
     
     # 添加子命令解析器
@@ -479,6 +480,15 @@ def run_uniprot_parser(args):
         uniprot_parser.save_to_file(f"{uniprot_odir}/{gene}.{uniprot_id}.UniProt_data.json")
         print("✅ UniProt数据解析完成")
         print(f"   目标基因: {gene} UniProt ID: {uniprot_id}")
+        # 3. DeepTMHMM蛋白拓补结构域预测
+        depptmhmm_odir = os.path.join(odir,"DeepTMHMM")
+        manager.ensure_output_dir(depptmhmm_odir)
+        predictor = ProteinTopologyPredictor(output_dir=depptmhmm_odir)
+        uniprot_json = f"{uniprot_odir}/{gene}.{uniprot_id}.UniProt_data.json"
+        result_json = predictor.run_complete_pipeline(uniprot_json)
+        print("✅ DeepTMHMM蛋白结构域预测完成")
+        print(f"   目标基因: {gene} UniProt ID: {uniprot_id}")
+
     except (ValueError, PermissionError) as e:
         print(f"❌ UniProt解析错误: {e}")
         sys.exit(1)
